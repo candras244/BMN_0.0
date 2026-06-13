@@ -33,11 +33,11 @@ body{
 
 .logo{
 
-    width:120px !important;
+    width:140;
 
-    height:120px !important;
+    height:140;
 
-    display:block !important;
+    display:block;
 
     object-fit:contain;
 }
