@@ -197,73 +197,50 @@ async function detailGedung(
 
         </button>
 
-        <div class="detail-gedung">
+        <div class="detail-card">
 
-            <h2>
-                ${gedung.NAMA_GEDUNG}
-            </h2>
+    <img
+        src="${foto}"
+        class="detail-foto">
 
-            <p>
-                ${gedung.DESKRIPSI_SINGKAT || ""}
-            </p>
+    <div class="detail-info">
 
-            <div class="info-box">
+        <div class="detail-header">
 
-                <div>
+            <div>
 
-                    <h3>
-                        ${result.jumlahRuangan}
-                    </h3>
+                <h2>
+                    ${gedung.NAMA_GEDUNG}
+                </h2>
 
-                    <span>
-                        Ruangan
-                    </span>
+                <span class="kode-gedung">
 
-                </div>
+                    ${gedung.KODE_GEDUNG}
+
+                </span>
 
             </div>
 
-            <div class="jenis-box">
+            <a
+                class="btn-primary"
+                target="_blank"
+                href="${API_URL}?action=previewDBRGedung&kodeGedung=${gedung.KODE_GEDUNG}">
 
-                <h3>
-                    Jenis Ruangan
-                </h3>
+                Lihat DBR Gedung
 
-                <ul>
-                    ${jenisHtml}
-                </ul>
-
-            </div>
-
-            <div
-                style="
-                margin:20px 0;
-                ">
-
-                <a
-                    class="btn-primary"
-                    target="_blank"
-                    href="
-                    ${API_URL}?action=previewDBRGedung&kodeGedung=${gedung.KODE_GEDUNG}">
-
-                    Lihat DBR Gedung
-
-                </a>
-
-            </div>
-
-            <h3>
-                Daftar Ruangan
-            </h3>
-
-            <div
-                class="ruangan-list">
-
-                ${ruangHtml}
-
-            </div>
+            </a>
 
         </div>
+
+        <p class="deskripsi">
+
+            ${gedung.DESKRIPSI_SINGKAT || ""}
+
+        </p>
+
+    </div>
+
+</div>
 
     `;
 
