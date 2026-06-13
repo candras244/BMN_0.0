@@ -50,7 +50,7 @@ async function loadGedung(){
             const foto =
                 gedung.FOTO_GEDUNG
                 ?
-                `https://drive.google.com/thumbnail?id=${gedung.FOTO_GEDUNG}`
+                `https://drive.google.com/thumbnail?id=${gedung.FOTO_GEDUNG}&sz=w1000`
                 :
                 "https://via.placeholder.com/600x350";
 
