@@ -15,6 +15,14 @@ async function getAPI(action){
             action
         );
 
+    if(!res.ok){
+
+        throw new Error(
+            "Gagal menghubungi API"
+        );
+
+    }
+
     return await res.json();
 
 }
