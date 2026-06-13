@@ -244,11 +244,7 @@ async function detailGedung(
                     class="btn-primary"
                     target="_blank"
                     href="
-                    ${API_URL}
-                    ?action=previewDBRGedung
-                    &kodeGedung=
-                    ${gedung.KODE_GEDUNG}
-                    ">
+                    ${API_URL}?action=previewDBRGedung&kodeGedung=${gedung.KODE_GEDUNG}">
 
                     Lihat DBR Gedung
 
