@@ -195,46 +195,63 @@ async function detailGedung(
 
         </button>
 
-        <div class="detail-card">
+       <div class="detail-gedung">
 
-    <img
-        src="${foto}"
-        class="detail-foto">
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:20px;
+        margin-bottom:20px;
+        flex-wrap:wrap;
+    ">
 
-    <div class="detail-info">
+        <div>
 
-        <div class="detail-header">
+            <h2>
+                ${gedung.NAMA_GEDUNG}
+            </h2>
 
-            <div>
-
-                <h2>
-                    ${gedung.NAMA_GEDUNG}
-                </h2>
-
-                <span class="kode-gedung">
-
-                    ${gedung.KODE_GEDUNG}
-
-                </span>
-
-            </div>
-
-            <a
-                class="btn-primary"
-                target="_blank"
-                href="${API_URL}?action=previewDBRGedung&kodeGedung=${gedung.KODE_GEDUNG}">
-
-                Lihat DBR Gedung
-
-            </a>
+            <p>
+                ${gedung.DESKRIPSI_SINGKAT || ""}
+            </p>
 
         </div>
 
-        <p class="deskripsi">
+        <a
+            class="btn-primary"
+            target="_blank"
+            href="${API_URL}?action=previewDBRGedung&kodeGedung=${gedung.KODE_GEDUNG}">
 
-            ${gedung.DESKRIPSI_SINGKAT || ""}
+            Lihat DBR Gedung
 
-        </p>
+        </a>
+
+    </div>
+
+    <div class="jenis-box">
+
+        <h3>
+            Jenis Ruangan
+        </h3>
+
+        <ul>
+
+            ${jenisHtml}
+
+        </ul>
+
+    </div>
+
+    <h3 style="margin-bottom:15px;">
+
+        Daftar Ruangan
+
+    </h3>
+
+    <div class="ruangan-list">
+
+        ${ruangHtml}
 
     </div>
 
