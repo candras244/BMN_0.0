@@ -417,12 +417,7 @@ async function detailRuangan(
             <a
                 class="btn-primary"
                 target="_blank"
-                href="
-                ${API_URL}
-                ?action=previewDBRRuangan
-                &kodeRuangan=
-                ${ruang.KODE_RUANGAN}
-                ">
+                href="${API_URL}?action=previewDBRRuangan&kodeRuangan=${ruang.KODE_RUANGAN}">
 
                 Lihat DBR Ruangan
 
