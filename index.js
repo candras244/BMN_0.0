@@ -168,12 +168,10 @@ async function detailGedung(
 
                     <button
                         class="btn-primary"
-                        onclick="
-                            detailRuangan(
-                                '${ruang.KODE_RUANGAN}'
-                            )
-                        ">
+                        onclick="detailRuangan('${ruang.KODE_RUANGAN}')">
+                        
                         Lihat
+                        
                     </button>
 
                 </div>
