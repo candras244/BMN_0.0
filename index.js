@@ -95,3 +95,173 @@ async function loadGedung(){
         html;
 
 }
+
+async function detailGedung(
+    kodeGedung
+){
+
+    const result =
+        await getAPI(
+            "getDetailGedung" +
+            "&kodeGedung=" +
+            kodeGedung
+        );
+
+    if(!result.success){
+
+        alert(
+            "Data gedung tidak ditemukan"
+        );
+
+        return;
+    }
+
+    const gedung =
+        result.gedung;
+
+    let jenisHtml = "";
+
+    Object.keys(
+        result.jenisRuangan
+    ).forEach(
+        jenis => {
+
+            jenisHtml += `
+                <li>
+                    ${jenis}
+                    :
+                    ${result.jenisRuangan[jenis]}
+                </li>
+            `;
+
+        }
+    );
+
+    let ruangHtml = "";
+
+    result.daftarRuangan.forEach(
+        ruang => {
+
+            ruangHtml += `
+
+                <div class="ruang-card">
+
+                    <div>
+
+                        <h4>
+                            ${ruang.NAMA_RUANGAN}
+                        </h4>
+
+                        <small>
+                            ${ruang.JENIS_RUANGAN}
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="btn-primary"
+                        onclick="
+                            detailRuangan(
+                                '${ruang.KODE_RUANGAN}'
+                            )
+                        ">
+                        Lihat
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+    document
+        .getElementById(
+            "content"
+        )
+        .innerHTML = `
+
+        <button
+            class="btn-back"
+            onclick="loadGedung()">
+
+            ← Kembali
+
+        </button>
+
+        <div class="detail-gedung">
+
+            <h2>
+                ${gedung.NAMA_GEDUNG}
+            </h2>
+
+            <p>
+                ${gedung.DESKRIPSI_SINGKAT || ""}
+            </p>
+
+            <div class="info-box">
+
+                <div>
+
+                    <h3>
+                        ${result.jumlahRuangan}
+                    </h3>
+
+                    <span>
+                        Ruangan
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="jenis-box">
+
+                <h3>
+                    Jenis Ruangan
+                </h3>
+
+                <ul>
+                    ${jenisHtml}
+                </ul>
+
+            </div>
+
+            <div
+                style="
+                margin:20px 0;
+                ">
+
+                <a
+                    class="btn-primary"
+                    target="_blank"
+                    href="
+                    ${API_URL}
+                    ?action=previewDBRGedung
+                    &kodeGedung=
+                    ${gedung.KODE_GEDUNG}
+                    ">
+
+                    Lihat DBR Gedung
+
+                </a>
+
+            </div>
+
+            <h3>
+                Daftar Ruangan
+            </h3>
+
+            <div
+                class="ruangan-list">
+
+                ${ruangHtml}
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
