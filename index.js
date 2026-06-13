@@ -265,3 +265,215 @@ async function detailGedung(
 
 }
 
+async function detailRuangan(
+    kodeRuangan
+){
+
+    const result =
+        await getAPI(
+            "getDetailRuangan" +
+            "&kodeRuangan=" +
+            kodeRuangan
+        );
+
+    if(!result.success){
+
+        alert(
+            "Data ruangan tidak ditemukan"
+        );
+
+        return;
+    }
+
+    const ruang =
+        result.ruangan;
+
+    let asetHtml = "";
+
+    result.aset.forEach(
+        (aset,index) => {
+
+            asetHtml += `
+
+                <tr>
+
+                    <td>
+                        ${index + 1}
+                    </td>
+
+                    <td>
+                        ${aset.KODE_BARANG || ""}
+                    </td>
+
+                    <td>
+                        ${aset.NUP || ""}
+                    </td>
+
+                    <td>
+                        ${aset.NAMA_BARANG || ""}
+                    </td>
+
+                    <td>
+                        ${aset.JENIS_BARANG || ""}
+                    </td>
+
+                    <td>
+                        ${aset.MERK_TIPE || ""}
+                    </td>
+
+                    <td>
+                        ${aset.KONDISI || ""}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+    if(result.aset.length === 0){
+
+        asetHtml = `
+
+            <tr>
+
+                <td
+                    colspan="7"
+                    style="
+                    text-align:center;
+                    ">
+
+                    Belum ada aset
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+    document
+        .getElementById(
+            "content"
+        )
+        .innerHTML = `
+
+        <button
+            class="btn-back"
+            onclick="
+                detailGedung(
+                    '${ruang.KODE_GEDUNG}'
+                )
+            ">
+
+            ← Kembali
+
+        </button>
+
+        <div class="detail-gedung">
+
+            <h2>
+
+                ${ruang.NAMA_RUANGAN}
+
+            </h2>
+
+            <p>
+
+                Gedung :
+                ${ruang.NAMA_GEDUNG}
+
+            </p>
+
+            <p>
+
+                Jenis Ruangan :
+                ${ruang.JENIS_RUANGAN}
+
+            </p>
+
+            <p>
+
+                PIC :
+                ${ruang.PIC_RUANGAN}
+
+            </p>
+
+            <p>
+
+                NIP :
+                ${ruang.NIP_PIC}
+
+            </p>
+
+            <br>
+
+            <a
+                class="btn-primary"
+                target="_blank"
+                href="
+                ${API_URL}
+                ?action=previewDBRRuangan
+                &kodeRuangan=
+                ${ruang.KODE_RUANGAN}
+                ">
+
+                Lihat DBR Ruangan
+
+            </a>
+
+            <br><br>
+
+            <h3>
+
+                Daftar Aset
+                (${result.jumlahAset})
+
+            </h3>
+
+            <div
+                class="table-wrapper">
+
+                <table
+                    class="aset-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>No</th>
+
+                            <th>Kode</th>
+
+                            <th>NUP</th>
+
+                            <th>Nama Barang</th>
+
+                            <th>Jenis</th>
+
+                            <th>Merk/Tipe</th>
+
+                            <th>Kondisi</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        ${asetHtml}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
