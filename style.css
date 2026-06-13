@@ -228,3 +228,30 @@ body{
 
     align-items:center;
 }
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+    margin-top:20px;
+}
+
+.aset-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+.aset-table th,
+.aset-table td{
+
+    border:1px solid #ddd;
+
+    padding:10px;
+}
+
+.aset-table th{
+
+    background:#f1f3f5;
+}
