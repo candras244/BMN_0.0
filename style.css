@@ -33,8 +33,13 @@ body{
 
 .logo{
 
-    width:90px;
-    height:auto;
+  width:90px;
+
+  height:auto;
+
+  margin-right:15px;
+
+  display:block;
 }
 
 .header-right{
